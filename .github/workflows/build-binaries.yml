@@ -50,6 +50,7 @@ jobs:
           python -m PyInstaller build.spec --clean --noconfirm
 
       - name: Verify executable exists
+        shell: bash
         run: |
           if [ "${{ matrix.os }}" = "windows-latest" ]; then
             if [ ! -f "dist/lg-remote-api.exe" ]; then
@@ -65,6 +66,7 @@ jobs:
 
       - name: Get version
         id: version
+        shell: bash
         run: |
           if [ "${{ github.ref_type }}" = "tag" ]; then
             VERSION="${{ github.ref_name }}"
