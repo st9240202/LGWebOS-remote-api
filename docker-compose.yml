@@ -1,0 +1,24 @@
+services:
+  lg-remote-api:
+    build: .
+    container_name: lg-remote-api
+    ports:
+      - "8000:8000"
+    environment:
+      # Change these values according to your setup
+      - TV_IP=${TV_IP:-q1router.tplinkdns.com}
+      - TV_MAC=${TV_MAC:-F0-86-20-48-2D-46}
+      - STORE_PATH=${STORE_PATH:-store.json}
+      - DEFAULT_WAIT=${DEFAULT_WAIT:-0}
+      - DEFAULT_WAIT_POWER=${DEFAULT_WAIT_POWER:-5}
+      - DEFAULT_VERIFY=${DEFAULT_VERIFY:-false}
+      - DEFAULT_APP=${DEFAULT_APP:-netflix}
+    volumes:
+      - ./store.json:/app/store.json
+    restart: unless-stopped
+    networks:
+      - lg-remote-network
+
+networks:
+  lg-remote-network:
+    driver: bridge
