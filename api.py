@@ -11,9 +11,9 @@ from lg_remote import send_magic_packet_unicast, try_connect_pywebostv, try_powe
 # ========== Default Configuration ==========
 # Modify these values to set defaults, used when POST body doesn't specify parameters
 # Or use environment variables to override (recommended for Docker)
-DEFAULT_IP = os.getenv("TV_IP", "q1router.tplinkdns.com")
+DEFAULT_IP = os.getenv("TV_IP", "192.168.1.100")
 DEFAULT_STORE = os.getenv("STORE_PATH", "store.json")
-DEFAULT_MAC = os.getenv("TV_MAC", "F0-86-20-48-2D-46")
+DEFAULT_MAC = os.getenv("TV_MAC", "xx-xx-xx-xx-xx-xx")
 DEFAULT_WAIT = int(os.getenv("DEFAULT_WAIT", "0"))                    # Wait time (seconds)
 DEFAULT_WAIT_POWER = int(os.getenv("DEFAULT_WAIT_POWER", "5"))        # Wait time for power endpoints
 DEFAULT_VERIFY = os.getenv("DEFAULT_VERIFY", "false").lower() == "true"  # Whether to verify connection

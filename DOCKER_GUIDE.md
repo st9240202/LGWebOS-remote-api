@@ -20,7 +20,28 @@ TV_MAC=xx-xx-xx-xx-xx-xx
 STORE_PATH=store.json
 ```
 
-### 2. Build and Run with Docker Compose (Recommended)
+### 2. Run in OrbStack (Docker Hub image, no build)
+
+If you use **OrbStack** and want to run the pre-built image from Docker Hub:
+
+```bash
+# Ensure store.json exists (create empty if first time)
+touch store.json
+
+# Load .env and run (OrbStack uses Docker Compose)
+docker compose -f docker-compose.hub.yml up -d
+```
+
+- API: **http://localhost:8000**
+- Docs: **http://localhost:8000/docs**
+- Image used: `st9240202/lgwebos-remote-api:latest`
+
+To stop:
+```bash
+docker compose -f docker-compose.hub.yml down
+```
+
+### 3. Build and Run with Docker Compose (local build)
 
 ```bash
 docker-compose up -d --build
@@ -30,7 +51,7 @@ The API will be available at `http://localhost:8000`
 
 Access Swagger UI at: `http://localhost:8000/docs`
 
-### 3. Or Build and Run Manually
+### 4. Or Build and Run Manually
 
 **Build the image:**
 ```bash
@@ -52,8 +73,8 @@ docker run -d \
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `TV_IP` | q1router.tplinkdns.com | TV IP address or hostname |
-| `TV_MAC` | F0-86-20-48-2D-46 | TV MAC address for WOL |
+| `TV_IP` | 192.168.1.100 | TV IP address or hostname |
+| `TV_MAC` | xx-xx-xx-xx-xx-xx | TV MAC address for WOL |
 | `STORE_PATH` | store.json | Path to WebOS auth store |
 | `DEFAULT_WAIT` | 0 | Default wait time (seconds) |
 | `DEFAULT_WAIT_POWER` | 5 | Wait time for power ops (seconds) |
@@ -88,3 +109,4 @@ curl http://localhost:8000/health
 - On first connection to TV, authorization may be required (accept on TV screen)
 - For best results, use your TV's IP address instead of hostname
 - Make sure your Mac and TV are on the same network
+- **OrbStack**: Use `docker compose -f docker-compose.hub.yml up -d` to run the image from Docker Hub (`st9240202/lgwebos-remote-api`) without building locally

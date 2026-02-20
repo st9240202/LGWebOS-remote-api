@@ -7,8 +7,8 @@ Features:
   and to register (persisting authentication store to a JSON file).
 
 Usage examples:
-	python lg_remote.py --mac F0-86-20-48-2D-46 --wait 5
-	python lg_remote.py --ip 192.168.0.167 --mac F0-86-20-48-2D-46 --store store.json
+	python lg_remote.py --mac xx-xx-xx-xx-xx-xx --wait 5
+	python lg_remote.py --ip 192.168.1.100 --mac xx-xx-xx-xx-xx-xx --store store.json
 
 If you want to use the WebOS API features, install `pywebostv`:
   pip install pywebostv
@@ -1036,7 +1036,7 @@ def try_remote_button_pywebostv(ip: str, store_path: Path | None, button: str, t
 def main():
 	parser = argparse.ArgumentParser(description='Turn on LG WebOS TV via unicast WOL + optional WebOS verify')
 	parser.add_argument('--ip', help='IP address of the TV (required for unicast WOL)', default='192.168.0.167')
-	parser.add_argument('--mac', help='MAC address of the TV (required to send Wake-on-LAN)', default='F0-86-20-48-2D-46')
+	parser.add_argument('--mac', help='MAC address of the TV (required to send Wake-on-LAN)', default='xx-xx-xx-xx-xx-xx')
 	parser.add_argument('--wait', type=int, default=5, help='Seconds to wait after WOL before verifying')
 	parser.add_argument('--store', help='Path to JSON file to persist pywebostv auth store', default='store.json')
 	args = parser.parse_args()

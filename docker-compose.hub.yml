@@ -1,11 +1,13 @@
+# Run from Docker Hub image (no build). Use with OrbStack or any Docker runtime.
+# Usage: docker compose -f docker-compose.hub.yml up -d
+
 services:
   lg-remote-api:
-    build: .
+    image: st9240202/lgwebos-remote-api:latest
     container_name: lg-remote-api
     ports:
       - "8000:8000"
     environment:
-      # Change these values according to your setup
       - TV_IP=${TV_IP:-192.168.1.100}
       - TV_MAC=${TV_MAC:-xx-xx-xx-xx-xx-xx}
       - STORE_PATH=${STORE_PATH:-store.json}
